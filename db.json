@@ -1,0 +1,23 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "siriKey",
+      "phone": "+79881206917"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "name": "zerigg",
+      "phone": "+79881111111"
+    }
+  ],
+  "admin": {
+    "admin": {
+      "login": "admin",
+      "password": "admin",
+      "token": "qwer123!@#"
+    }
+  }
+}
