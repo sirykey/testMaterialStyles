@@ -3,13 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Menu from '@material-ui/core/Menu';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
-import clsx from 'clsx'
-import { IconButton, useTheme } from '@material-ui/core'
+import { IconButton, MenuItem } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
 
 
@@ -85,23 +84,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function StaticMenu() {
+export default function StaticWithPopUp() {
   const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = useState(false)
 
-  const handleDrawerOpen = () => {
-    setOpen(true)
+  const [open, setOpen] = useState(null)
+  const handleClick = (e) => {
+    setOpen(e.currentTarget)
   }
 
-  const handleDrawerClose = () => {
-    setOpen(false)
+  const handleClose = () => {
+    setOpen(null)
   }
 
   return (
     <div className={classes.root}>
       <AppBar position="absolute"
-              className={clsx(classes.appBar, open && classes.appBar)}
+              className={classes.appBar}
       >
         <Toolbar className={classes.toolbarIcon}>
 
@@ -112,11 +110,20 @@ export default function StaticMenu() {
             color="inherit"
             edge='end'
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(open && classes.hide)}
+            onClick={handleClick}
           >
             <AccountCircle />
           </IconButton>
+          <Menu
+            anchorEl={open}
+            keepMounted
+            open={Boolean(open)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleClose}>Hello MotherFucker</MenuItem>
+            <MenuItem onClick={handleClose}>Wanna</MenuItem>
+            <MenuItem onClick={handleClose}>Log out?</MenuItem>
+          </Menu>
         </Toolbar>
 
       </AppBar>
@@ -134,31 +141,6 @@ export default function StaticMenu() {
               Hello motherfucker
             </ListItem>
           </List>
-        </div>
-      </Drawer>
-
-      <Drawer
-        className={classes.drawer}
-        variant='persistent'
-        anchor='right'
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            <ListItem button>
-              Hello motherfucker
-            </ListItem>
-          </List>
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronRightIcon/>
-            </IconButton>
-          </div>
         </div>
       </Drawer>
 
