@@ -154,11 +154,7 @@ export default function StaticMenu() {
               Hello motherfucker
             </ListItem>
           </List>
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronRightIcon/>
-            </IconButton>
-          </div>
+
         </div>
       </Drawer>
 
